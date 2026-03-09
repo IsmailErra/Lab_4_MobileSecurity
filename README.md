@@ -1,31 +1,52 @@
 # Lab_4_MobileSecurity
 
-## Tools Used
-- JADX GUI
-- dex2jar
+# Android APK Static Analysis Lab
 
-## APK Information
-APK Name: UnCrackable-Level1.apk
+## Informations générales
 
-## Static Analysis
+* **APK analysé:** UnCrackable-Level1.apk
+* **Outils utilisés:** JADX GUI, dex2jar
+* **Date:** 2026
 
-The APK was analyzed using JADX GUI to explore the source code and application structure.
+## Objectif
 
-### Code Analysis
-The decompiled source code was inspected to understand the application's logic.
+The goal of this lab was to perform a static analysis of an Android APK in order to understand its structure and identify potential security issues.
 
-### Manifest Analysis
-The AndroidManifest.xml file was examined to identify permissions and application components.
+## Analyse du Manifest
 
-### Sensitive Data Search
-Search was performed for potential sensitive strings such as:
-- password
-- token
-- secret
-- debug
-- http
+The AndroidManifest.xml file was analyzed to identify application configuration and components.
 
-No critical hardcoded secrets were found during this analysis.
+* Package name: `owasp.mstg.uncrackable1`
+* Main activity: `sg.vantagepoint.uncrackable1.MainActivity`
+* Minimum SDK: 19
+* Target SDK: 28
+
+## Analyse du code
+
+The APK was decompiled using JADX GUI.
+The source code of the application was explored, particularly the `MainActivity` class.
+
+The code includes checks for:
+
+* Root detection
+* Debuggable mode
+* Secret validation
+
+## Recherche de chaînes sensibles
+
+A search was performed for sensitive strings such as:
+
+* debug
+* secret
+* password
+* api
+
+One interesting string found:
+
+```
+"This is the correct secret."
+```
 
 ## Conclusion
-Static analysis allowed inspection of the application structure, manifest configuration, and source code without executing the APK.
+
+The static analysis allowed inspection of the APK structure, AndroidManifest
