@@ -123,3 +123,32 @@ Cette étude a révélé plusieurs mécanismes de sécurité présents dans l'ap
 
 Ces observations montrent l'importance de protéger les informations sensibles et d'utiliser des mécanismes de sécurité adaptés lors du développement d'applications mobiles.
 
+---
+
+## Captures d'écran
+
+### Vérification de l'intégrité de l'APK
+![](screenshots/01_apk_hash_verification.png)
+
+### Structure interne de l'APK
+![](screenshots/02_apk_structure.png)
+
+### Extraction du fichier DEX
+![](screenshots/03_dex_extraction.png)
+
+### Ouverture de l'APK dans JADX
+![](screenshots/04_jadx_overview.png)
+
+### Analyse du fichier AndroidManifest
+![](screenshots/05_manifest_analysis.png)
+
+### Analyse du code MainActivity
+![](screenshots/06_mainactivity_code.png)
+
+### Recherche de chaînes sensibles
+![](screenshots/07_sensitive_string_search.png)
+
+### Conversion DEX vers JAR
+![](screenshots/08_dex2jar_conversion.png)
+
+
