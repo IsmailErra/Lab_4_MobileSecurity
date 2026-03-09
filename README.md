@@ -1,52 +1,128 @@
 # Lab_4_MobileSecurity
 
-# Android APK Static Analysis Lab
+# Rapport d'analyse statique – UnCrackable Level 1
 
-## Informations générales
+## 1. Informations générales
 
-* **APK analysé:** UnCrackable-Level1.apk
-* **Outils utilisés:** JADX GUI, dex2jar
-* **Date:** 2026
+* **Application analysée :** UnCrackable-Level1.apk
+* **Type d’analyse :** Analyse statique d’un APK Android
+* **Outils utilisés :** JADX GUI, dex2jar
+* **Date :** 2026
+* **Analyste :** [Votre nom]
 
-## Objectif
+---
 
-The goal of this lab was to perform a static analysis of an Android APK in order to understand its structure and identify potential security issues.
+## 2. Description de l'analyse
 
-## Analyse du Manifest
+L'objectif de ce travail était d'examiner la structure interne d'une application Android sans l'exécuter.
+L'APK a été ouvert et étudié avec l'outil **JADX GUI** afin d'observer le code décompilé, les ressources et le fichier **AndroidManifest.xml**.
 
-The AndroidManifest.xml file was analyzed to identify application configuration and components.
+L'analyse a permis d'explorer :
 
-* Package name: `owasp.mstg.uncrackable1`
-* Main activity: `sg.vantagepoint.uncrackable1.MainActivity`
-* Minimum SDK: 19
-* Target SDK: 28
+* la structure générale de l'application
+* le fichier de configuration AndroidManifest
+* le code source décompilé
+* certaines chaînes de caractères présentes dans l'application
 
-## Analyse du code
+---
 
-The APK was decompiled using JADX GUI.
-The source code of the application was explored, particularly the `MainActivity` class.
+## 3. Structure de l’APK
 
-The code includes checks for:
+L’archive APK contient plusieurs éléments importants :
 
-* Root detection
-* Debuggable mode
-* Secret validation
+* **AndroidManifest.xml** : configuration principale de l'application
+* **classes.dex** : code compilé de l'application Android
+* **res/** : ressources graphiques et fichiers XML
+* **META-INF/** : informations de signature de l'application
 
-## Recherche de chaînes sensibles
+---
 
-A search was performed for sensitive strings such as:
+## 4. Analyse du Manifest
+
+Le fichier **AndroidManifest.xml** fournit des informations sur la configuration de l'application.
+
+Informations observées :
+
+* **Package :** owasp.mstg.uncrackable1
+* **Activité principale :** sg.vantagepoint.uncrackable1.MainActivity
+* **minSdkVersion :** 19
+* **targetSdkVersion :** 28
+
+L'application démarre à partir de l'activité **MainActivity** grâce à l’intent filter :
+
+* `android.intent.action.MAIN`
+* `android.intent.category.LAUNCHER`
+
+---
+
+## 5. Recherche de chaînes sensibles
+
+Une recherche a été effectuée dans le code afin d’identifier des mots-clés liés à la sécurité.
+
+Exemples de mots recherchés :
 
 * debug
 * secret
 * password
 * api
 
-One interesting string found:
+Une chaîne intéressante a été trouvée dans le code :
 
-```
 "This is the correct secret."
-```
 
-## Conclusion
+Cette chaîne indique que l'application vérifie une valeur secrète pour valider une action.
 
-The static analysis allowed inspection of the APK structure, AndroidManifest
+---
+
+## 6. Constats de sécurité
+
+### Constat 1 — Vérification du mode root
+
+**Niveau :** Faible
+
+L'application contient un mécanisme permettant de détecter si l'appareil Android est rooté.
+
+**Impact :**
+Ce type de protection peut parfois être contourné par un attaquant.
+
+**Remédiation :**
+Utiliser des mécanismes de protection supplémentaires contre la modification de l'application.
+
+---
+
+### Constat 2 — Détection du mode debug
+
+**Niveau :** Moyen
+
+Le code contient une vérification permettant de savoir si l'application est exécutée en mode debug.
+
+**Impact :**
+Un attaquant pourrait modifier l'application pour contourner cette vérification.
+
+**Remédiation :**
+S'assurer que l'application de production n'autorise pas le mode debug.
+
+---
+
+### Constat 3 — Chaîne secrète dans le code
+
+**Niveau :** Moyen
+
+Une chaîne liée à un secret est présente directement dans le code de l'application.
+
+**Impact :**
+Les informations sensibles présentes dans le code peuvent être récupérées via l'analyse statique.
+
+**Remédiation :**
+Éviter d'inclure des secrets directement dans le code de l'application.
+
+---
+
+## 7. Conclusion
+
+L'analyse statique de l'application **UnCrackable-Level1** a permis d'examiner la structure interne de l'APK et d'étudier son code sans exécution.
+
+Cette étude a révélé plusieurs mécanismes de sécurité présents dans l'application, notamment la détection du root et du mode debug, ainsi qu'une chaîne liée à un secret dans le code.
+
+Ces observations montrent l'importance de protéger les informations sensibles et d'utiliser des mécanismes de sécurité adaptés lors du développement d'applications mobiles.
+
