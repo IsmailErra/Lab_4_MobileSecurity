@@ -1,7 +1,4 @@
 # Lab_4_MobileSecurity
-
-# Rapport d'analyse statique – UnCrackable Level 1
-
 ## 1. Informations générales
 
 * **Application analysée :** UnCrackable-Level1.apk
