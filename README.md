@@ -5,7 +5,7 @@
 * **Type d’analyse :** Analyse statique d’un APK Android
 * **Outils utilisés :** JADX GUI, dex2jar
 * **Date :** 2026
-* **Analyste :** [Votre nom]
+* ** ** Erraouidate Ismail
 
 ---
 
